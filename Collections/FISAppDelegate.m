@@ -51,12 +51,24 @@
 }
 
 - (NSString *)stringInBasicLeetFromString:(NSString *)string {
-    NSMutableString *stringInBasicLeetFromString = [ string stringByReplacingOccurrencesOfString:@"a" withString:@"4"];
-    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"s" withString:@"5"];
-    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"i" withString:@"1"];
-    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"l" withString:@"1"];
-    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"e" withString:@"3"];
-    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"t" withString:@"7"];
+    NSDictionary *basicLeet = @{
+                                @"a" : @"4" ,
+                                @"s" : @"5" ,
+                                @"i" : @"1" ,
+                                @"l" : @"1" ,
+                                @"e" : @"3" ,
+                                @"t" : @"7"
+                                };
+    NSMutableString *stringInBasicLeetFromString = [ string copy ] ;
+    for (NSString *key in basicLeet) {
+        stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:key withString:[ basicLeet valueForKey:key]] ;
+    }
+//    NSMutableString *stringInBasicLeetFromString = [ string stringByReplacingOccurrencesOfString:@"a" withString:@"4"];
+//    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"s" withString:@"5"];
+//    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"i" withString:@"1"];
+//    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"l" withString:@"1"];
+//    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"e" withString:@"3"];
+//    stringInBasicLeetFromString = [ stringInBasicLeetFromString stringByReplacingOccurrencesOfString:@"t" withString:@"7"];
     return stringInBasicLeetFromString;
 }
 
