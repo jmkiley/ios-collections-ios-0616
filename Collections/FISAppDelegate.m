@@ -168,7 +168,7 @@
         
         NSArray *artistTitle = [ array[i] componentsSeparatedByString:@" - " ];
         
-        if ( [ songsGroupedByArtist objectForKey:artistTitle[0]] == nil ) {
+        if ( [ songsGroupedByArtist objectForKey:artistTitle[0] ] == nil ) {
             
             NSMutableArray *song = [ NSMutableArray new ];
             
@@ -179,20 +179,26 @@
         }
         else {
             [ songsGroupedByArtist[artistTitle[0]] addObject:artistTitle[1]] ;
+            NSMutableArray *songs = songsGroupedByArtist[artistTitle[0]] ;
+            
+            NSSortDescriptor *alphabetize = [ NSSortDescriptor sortDescriptorWithKey:nil ascending:YES ];
+            NSArray *alphaSongs = [ songs sortedArrayUsingDescriptors:@[alphabetize] ];;
+            
+            songsGroupedByArtistFromArray[artistTitle[0]] = alphaSongs;
         }
     }
     
-    
-    for (NSString *key in songsGroupedByArtist) {
-        
-        
-        NSMutableArray *songs = songsGroupedByArtist[key];
-        
-        NSSortDescriptor *alphabetize = [ NSSortDescriptor sortDescriptorWithKey:nil ascending:YES];
-        NSArray *alphaSongs = [ songs sortedArrayUsingDescriptors:@[alphabetize]];;
-
-        [songsGroupedByArtistFromArray setObject:alphaSongs forKey:key];
-    }
+// Clunky method
+//    for (NSString *key in songsGroupedByArtist) {
+//        
+//        
+//        NSMutableArray *songs = songsGroupedByArtist[key];
+//        
+//        NSSortDescriptor *alphabetize = [ NSSortDescriptor sortDescriptorWithKey:nil ascending:YES];
+//        NSArray *alphaSongs = [ songs sortedArrayUsingDescriptors:@[alphabetize]];;
+//
+//        [songsGroupedByArtistFromArray setObject:alphaSongs forKey:key];
+//    }
     NSLog(@"%@", songsGroupedByArtistFromArray);
 
 //    for ( NSUInteger i = 0 ; i < [ songsGroupedByArtistFromArray count ] ; i++ ) {
